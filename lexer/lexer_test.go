@@ -11,9 +11,9 @@ func TestCleaLexer(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(lexer.Scan(), "(")
-	assert.Equal(lexer.Scan(), "+")
-	assert.Equal(lexer.Scan(), "1")
-	assert.Equal(lexer.Scan(), "2")
-	assert.Equal(lexer.Scan(), ")")
+	assert.Equal(lexer.Scan(), L)
+	assert.Equal(lexer.Scan(), Ident)
+	assert.Equal(lexer.Scan(), Number)
+	assert.Equal(lexer.Scan(), Number)
+	assert.Equal(lexer.Scan(), R)
 }
