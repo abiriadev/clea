@@ -17,7 +17,8 @@ func NewCleaLexer(source string) CleaLexer {
 	}
 }
 
-func (lexer *CleaLexer) Scan() string {
-	lexer.scanner.Scan()
-	return lexer.scanner.TokenText()
+func (lexer *CleaLexer) Scan() TokenType {
+	tt := lexer.scanner.Scan()
+
+	return TokenTypeFromRune(tt)
 }
