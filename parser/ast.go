@@ -6,3 +6,11 @@ import (
 )
 
 type Tree mo.Either[lexer.Token, []Tree]
+
+func TreeFromToken(token lexer.Token) Tree {
+	return Tree(mo.Left[lexer.Token, []Tree](token))
+}
+
+func TreeFromSlice(slice []Tree) Tree {
+	return Tree(mo.Right[lexer.Token](slice))
+}
