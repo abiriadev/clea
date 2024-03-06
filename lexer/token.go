@@ -1,9 +1,5 @@
 package lexer
 
-import (
-	"text/scanner"
-)
-
 type TokenType int
 
 const (
@@ -33,25 +29,6 @@ func DebugTokenType(tokenType TokenType) string {
 	}
 
 	return "Error"
-}
-
-func TokenTypeFromRune(rune rune) TokenType {
-	switch rune {
-	case scanner.EOF:
-		return EofType
-	case '(':
-		return LType
-	case ')':
-		return RType
-	case scanner.Ident, '+', '-':
-		return IdentType
-	case scanner.Int, scanner.Float:
-		return NumberType
-	case scanner.String:
-		return StringType
-	}
-
-	return ErrorType
 }
 
 type Token struct {

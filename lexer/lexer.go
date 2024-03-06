@@ -1,6 +1,7 @@
 package lexer
 
 import (
+	"strconv"
 	"strings"
 	"text/scanner"
 )
@@ -23,8 +24,52 @@ func NewCleaLexer(source string) CleaLexer {
 	}
 }
 
-func (lexer *CleaLexer) Scan() TokenType {
+func (lexer *CleaLexer) Scan() Token {
 	tt := lexer.scanner.Scan()
 
-	return TokenTypeFromRune(tt)
+	Type := tokenTypeFromRune(tt)
+	Value := tokenValueFromType(Type, lexer.scanner.String())
+
+	return Token{
+		Type,
+		Value,
+	}
+}
+
+func tokenTypeFromRune(rune rune) TokenType {
+	switch rune {
+	case scanner.EOF:
+		return EofType
+	case '(':
+		return LType
+	case ')':
+		return RType
+	case scanner.Ident, '+', '-':
+		return IdentType
+	case scanner.Int, scanner.Float:
+		return NumberType
+	case scanner.String:
+		return StringType
+	}
+
+	return ErrorType
+}
+
+func tokenValueFromType(tokenType TokenType, text string) TokenValue {
+	switch tokenType {
+	case IdentType:
+		return Ident(text)
+	case NumberType:
+		if f, err := strconv.ParseFloat(text, 64); err != nil {
+			panic(err)
+		} else {
+			return Number(f)
+		}
+	case StringType:
+		l := len(text)
+		return String(text[1 : l-1])
+	}
+
+	// empty `TokenValue` for punctuation tokens
+	return nil
 }
