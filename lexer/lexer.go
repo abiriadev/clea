@@ -16,3 +16,8 @@ func NewCleaLexer(source string) CleaLexer {
 		scanner,
 	}
 }
+
+func (lexer *CleaLexer) Scan() string {
+	lexer.scanner.Scan()
+	return lexer.scanner.TokenText()
+}
