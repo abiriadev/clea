@@ -28,7 +28,7 @@ func (lexer *CleaLexer) Scan() Token {
 	tt := lexer.scanner.Scan()
 
 	Type := tokenTypeFromRune(tt)
-	Value := tokenValueFromType(Type, lexer.scanner.String())
+	Value := tokenValueFromType(Type, lexer.scanner.TokenText())
 
 	return Token{
 		Type,
