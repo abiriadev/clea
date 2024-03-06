@@ -10,9 +10,13 @@ type TokenStack struct {
 }
 
 func NewTokenStack() TokenStack {
-	return TokenStack{
+	ts := TokenStack{
 		stack: make([][]Tree, 0),
 	}
+
+	ts.Push()
+
+	return ts
 }
 
 func (s *TokenStack) Push() {
