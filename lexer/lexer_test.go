@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestHello(t *testing.T) {
+func TestCleaLexer(t *testing.T) {
 	lexer := NewCleaLexer("(+ 1 2)")
 
 	assert := assert.New(t)
