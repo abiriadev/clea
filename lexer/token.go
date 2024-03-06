@@ -1,5 +1,7 @@
 package lexer
 
+import "text/scanner"
+
 type TokenType int
 
 const (
@@ -9,6 +11,8 @@ const (
 	Ident
 	Number
 	String
+
+	Error
 )
 
 var tokenTypeMap = map[TokenType]string{
@@ -25,5 +29,21 @@ func DebugTokenType(tokenType TokenType) string {
 		return debug
 	}
 
-	return ""
+	return "Error"
+}
+
+func TokenTypeFromRune(rune rune) TokenType {
+	switch rune {
+	case scanner.EOF:
+		return EOF
+	case scanner.Ident:
+		return Ident
+	case scanner.Int:
+	case scanner.Float:
+		return Number
+	case scanner.String:
+		return String
+	}
+
+	return Error
 }
