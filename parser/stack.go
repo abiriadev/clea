@@ -2,7 +2,6 @@ package parser
 
 import (
 	"github.com/abiriadev/clea/lexer"
-	"github.com/samber/mo"
 )
 
 type TokenStack struct {
@@ -25,14 +24,14 @@ func (s *TokenStack) Push() {
 
 func (s *TokenStack) Insert(token lexer.Token) {
 	l := len(s.stack)
-	s.stack[l-1] = append(s.stack[l-1], Tree(mo.Left[lexer.Token, []Tree](token)))
+	s.stack[l-1] = append(s.stack[l-1], TreeFromToken(token))
 }
 
 func (s *TokenStack) Shift() {
 	last := s.Pop()
 	l := len(s.stack)
 
-	s.stack[l-1] = append(s.stack[l-1], Tree(mo.Right[lexer.Token](last)))
+	s.stack[l-1] = append(s.stack[l-1], TreeFromSlice(last))
 }
 
 func (s *TokenStack) Pop() []Tree {
