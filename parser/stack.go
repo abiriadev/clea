@@ -6,19 +6,28 @@ import (
 )
 
 type TokenStack struct {
-	stack []Tree
+	stack [][]Tree
 }
 
 func NewTokenStack() TokenStack {
 	return TokenStack{
-		stack: make([]Tree, 0),
+		stack: make([][]Tree, 0),
 	}
 }
 
 func (s *TokenStack) Push() {
-	s.stack = append(s.stack, Tree(mo.Right[lexer.Token](make([]Tree, 0))))
+	s.stack = append(s.stack, make([]Tree, 0))
 }
 
 func (s *TokenStack) Insert(token lexer.Token) {
-	s.stack = append(s.stack, Tree(mo.Left[lexer.Token, []Tree](token)))
+	l := len(s.stack)
+	s.stack[l-1] = append(s.stack[l-1], Tree(mo.Left[lexer.Token, []Tree](token)))
+}
+
+func (s *TokenStack) Pop() {
+	l := len(s.stack)
+	last := s.stack[l-1]
+	s.stack = s.stack[:l-1]
+
+	s.stack[l-2] = append(s.stack[l-2], Tree(mo.Right[lexer.Token](last)))
 }
