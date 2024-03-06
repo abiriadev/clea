@@ -16,4 +16,5 @@ func TestCleaLexer(t *testing.T) {
 	assert.Equal(lexer.Scan(), Number)
 	assert.Equal(lexer.Scan(), Number)
 	assert.Equal(lexer.Scan(), R)
+	assert.Equal(lexer.Scan(), EOF)
 }
