@@ -53,3 +53,25 @@ func TokenTypeFromRune(rune rune) TokenType {
 
 	return ErrorType
 }
+
+type Token interface {
+	TokenType() TokenType
+}
+
+type Ident string
+
+func (_ Ident) TokenType() TokenType {
+	return IdentType
+}
+
+type Number float64
+
+func (_ Number) TokenType() TokenType {
+	return NumberType
+}
+
+type String string
+
+func (_ String) TokenType() TokenType {
+	return StringType
+}
