@@ -8,6 +8,7 @@ type TokenType int
 
 const (
 	EOF TokenType = iota
+
 	L
 	R
 	Ident
@@ -42,12 +43,9 @@ func TokenTypeFromRune(rune rune) TokenType {
 		return L
 	case ')':
 		return R
-	case scanner.Ident:
-	case '+':
-	case '-':
+	case scanner.Ident, '+', '-':
 		return Ident
-	case scanner.Int:
-	case scanner.Float:
+	case scanner.Int, scanner.Float:
 		return Number
 	case scanner.String:
 		return String
