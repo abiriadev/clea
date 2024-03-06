@@ -10,10 +10,15 @@ type CleaLexer struct {
 }
 
 func NewCleaLexer(source string) CleaLexer {
-	var scanner scanner.Scanner
-	scanner.Init(strings.NewReader(source))
+	var s scanner.Scanner
+	s.Init(strings.NewReader(source))
+	s.Mode = scanner.ScanIdents |
+		scanner.ScanInts |
+		scanner.ScanFloats |
+		scanner.ScanStrings |
+		scanner.SkipComments
 	return CleaLexer{
-		scanner,
+		s,
 	}
 }
 
