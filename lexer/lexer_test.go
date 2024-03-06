@@ -53,3 +53,12 @@ func TestShouldLexNumber(t *testing.T) {
 	assert.Equal(Number, lexer.Scan())
 	assert.Equal(EOF, lexer.Scan())
 }
+
+func TestShouldLexString(t *testing.T) {
+	lexer := NewCleaLexer(`"hello, World!"`)
+
+	assert := assert.New(t)
+
+	assert.Equal(String, lexer.Scan())
+	assert.Equal(EOF, lexer.Scan())
+}
