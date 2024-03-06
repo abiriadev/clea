@@ -62,3 +62,11 @@ func TestShouldLexString(t *testing.T) {
 	assert.Equal(String, lexer.Scan())
 	assert.Equal(EOF, lexer.Scan())
 }
+
+func TestShouldSkipComment(t *testing.T) {
+	lexer := NewCleaLexer("// comment")
+
+	assert := assert.New(t)
+
+	assert.Equal(EOF, lexer.Scan())
+}
