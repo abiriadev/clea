@@ -7,24 +7,24 @@ import (
 type TokenType int
 
 const (
-	EOF TokenType = iota
+	EofType TokenType = iota
 
-	L
-	R
-	Ident
-	Number
-	String
+	LType
+	RType
+	IdentType
+	NumberType
+	StringType
 
-	Error
+	ErrorType
 )
 
 var tokenTypeMap = map[TokenType]string{
-	EOF:    "EOF",
-	L:      "(",
-	R:      ")",
-	Ident:  "Ident",
-	Number: "Number",
-	String: "String",
+	EofType:    "EOF",
+	LType:      "(",
+	RType:      ")",
+	IdentType:  "Ident",
+	NumberType: "Number",
+	StringType: "String",
 }
 
 func DebugTokenType(tokenType TokenType) string {
@@ -38,18 +38,18 @@ func DebugTokenType(tokenType TokenType) string {
 func TokenTypeFromRune(rune rune) TokenType {
 	switch rune {
 	case scanner.EOF:
-		return EOF
+		return EofType
 	case '(':
-		return L
+		return LType
 	case ')':
-		return R
+		return RType
 	case scanner.Ident, '+', '-':
-		return Ident
+		return IdentType
 	case scanner.Int, scanner.Float:
-		return Number
+		return NumberType
 	case scanner.String:
-		return String
+		return StringType
 	}
 
-	return Error
+	return ErrorType
 }
