@@ -41,4 +41,15 @@ func TestShouldLexIdent(t *testing.T) {
 	assert.Equal(Ident, lexer.Scan())
 	assert.Equal(Ident, lexer.Scan())
 	assert.Equal(Ident, lexer.Scan())
+	assert.Equal(EOF, lexer.Scan())
+}
+
+func TestShouldLexNumber(t *testing.T) {
+	lexer := NewCleaLexer("123 4.56")
+
+	assert := assert.New(t)
+
+	assert.Equal(Number, lexer.Scan())
+	assert.Equal(Number, lexer.Scan())
+	assert.Equal(EOF, lexer.Scan())
 }
