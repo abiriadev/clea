@@ -54,24 +54,23 @@ func TokenTypeFromRune(rune rune) TokenType {
 	return ErrorType
 }
 
-type Token interface {
-	TokenType() TokenType
+type Token struct {
+	Type  TokenType
+	Value TokenValue
+}
+
+type TokenValue interface {
+	IsTokenValue()
 }
 
 type Ident string
 
-func (_ Ident) TokenType() TokenType {
-	return IdentType
-}
+func (_ Ident) IsTokenValue() {}
 
 type Number float64
 
-func (_ Number) TokenType() TokenType {
-	return NumberType
-}
+func (_ Number) IsTokenValue() {}
 
 type String string
 
-func (_ String) TokenType() TokenType {
-	return StringType
-}
+func (_ String) IsTokenValue() {}
