@@ -1,6 +1,8 @@
 package parser
 
-import "github.com/abiriadev/clea/lexer"
+import (
+	"github.com/abiriadev/clea/lexer"
+)
 
 type CleaParser struct {
 	lexer lexer.CleaLexer
