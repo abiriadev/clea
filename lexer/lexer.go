@@ -16,6 +16,7 @@ func NewCleaLexer(source string) CleaLexer {
 		scanner.ScanInts |
 		scanner.ScanFloats |
 		scanner.ScanStrings |
+		scanner.ScanComments |
 		scanner.SkipComments
 	return CleaLexer{
 		s,
