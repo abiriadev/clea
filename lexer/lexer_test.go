@@ -11,12 +11,12 @@ func TestCleaLexer(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(L, lexer.Scan())
-	assert.Equal(Ident, lexer.Scan())
-	assert.Equal(Number, lexer.Scan())
-	assert.Equal(Number, lexer.Scan())
-	assert.Equal(R, lexer.Scan())
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(LType, lexer.Scan())
+	assert.Equal(IdentType, lexer.Scan())
+	assert.Equal(NumberType, lexer.Scan())
+	assert.Equal(NumberType, lexer.Scan())
+	assert.Equal(RType, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
 
 func TestShouldLexParenthesis(t *testing.T) {
@@ -24,13 +24,13 @@ func TestShouldLexParenthesis(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(L, lexer.Scan())
-	assert.Equal(L, lexer.Scan())
-	assert.Equal(R, lexer.Scan())
-	assert.Equal(L, lexer.Scan())
-	assert.Equal(R, lexer.Scan())
-	assert.Equal(R, lexer.Scan())
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(LType, lexer.Scan())
+	assert.Equal(LType, lexer.Scan())
+	assert.Equal(RType, lexer.Scan())
+	assert.Equal(LType, lexer.Scan())
+	assert.Equal(RType, lexer.Scan())
+	assert.Equal(RType, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
 
 func TestShouldLexIdent(t *testing.T) {
@@ -38,10 +38,10 @@ func TestShouldLexIdent(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(Ident, lexer.Scan())
-	assert.Equal(Ident, lexer.Scan())
-	assert.Equal(Ident, lexer.Scan())
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(IdentType, lexer.Scan())
+	assert.Equal(IdentType, lexer.Scan())
+	assert.Equal(IdentType, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
 
 func TestShouldLexNumber(t *testing.T) {
@@ -49,9 +49,9 @@ func TestShouldLexNumber(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(Number, lexer.Scan())
-	assert.Equal(Number, lexer.Scan())
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(NumberType, lexer.Scan())
+	assert.Equal(NumberType, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
 
 func TestShouldLexString(t *testing.T) {
@@ -59,8 +59,8 @@ func TestShouldLexString(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(String, lexer.Scan())
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(StringType, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
 
 func TestShouldSkipComment(t *testing.T) {
@@ -68,5 +68,5 @@ func TestShouldSkipComment(t *testing.T) {
 
 	assert := assert.New(t)
 
-	assert.Equal(EOF, lexer.Scan())
+	assert.Equal(EofType, lexer.Scan())
 }
