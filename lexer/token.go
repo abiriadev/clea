@@ -1,6 +1,8 @@
 package lexer
 
-import "text/scanner"
+import (
+	"text/scanner"
+)
 
 type TokenType int
 
@@ -36,7 +38,13 @@ func TokenTypeFromRune(rune rune) TokenType {
 	switch rune {
 	case scanner.EOF:
 		return EOF
+	case '(':
+		return L
+	case ')':
+		return R
 	case scanner.Ident:
+	case '+':
+	case '-':
 		return Ident
 	case scanner.Int:
 	case scanner.Float:
