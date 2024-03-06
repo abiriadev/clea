@@ -32,3 +32,13 @@ func TestShouldLexParenthesis(t *testing.T) {
 	assert.Equal(R, lexer.Scan())
 	assert.Equal(EOF, lexer.Scan())
 }
+
+func TestShouldLexIdent(t *testing.T) {
+	lexer := NewCleaLexer("abc + -")
+
+	assert := assert.New(t)
+
+	assert.Equal(Ident, lexer.Scan())
+	assert.Equal(Ident, lexer.Scan())
+	assert.Equal(Ident, lexer.Scan())
+}
